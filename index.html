@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+<link href="CSS/UBD.css" rel="stylesheet" type="text/css" />
+
+<script src="Scripts/d3.v3.min.js"></script>
+<script src="Scripts/queue.min.js"></script>
+<script src="Scripts/topojson.js"></script>
+<script src="Scripts/jquery-1.9.1.min.js"></script>
+<script src="Scripts/DERGraphs.min.js"></script>
+
+<style>
+	/*@import url(http://fonts.googleapis.com/css?family=PT+Serif|PT+Serif:b|PT+Serif:i);*/
+
+	@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,900,400italic,300italic);
+	@import url(http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic);
+	section {
+		background: white;
+		color: black;
+		padding: 2em;
+		font-family: "PT Serif", Baskerville, Georgia;
+	}
+
+	#follow {
+		background: none;
+	}
+
+	.kanton {
+		color: #777;
+		/*fill: #cba3a1;*/ /*Haut */
+		/*fill: #da7796;*/ /*Lippe */
+	    fill: #e8e1d9; /*Zahn*/
+		
+		/*fill: #c5a38a;*/ /*Rathaus */
+		/*fill: #e10916;*/ /*Schwyz Rot */
+	}
+
+	.sel {
+		color: #ffffff;
+	}
+
+	.cb_g {
+		background-color: lightblue;
+	}
+
+	.cb_f {
+		background-color: white;
+	}
+
+	a:link, a:visited {
+		color: orange;
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	.swiss-cantons {
+		fill: none;
+		stroke: #000;
+		stroke-width: 3;
+		stroke-linejoin: round;
+	}
+
+	.swiss-municipalities {
+		fill: none;
+		stroke: black
+	}
+
+	.tooltip {
+		position: absolute;
+		text-align: center;
+		/*width: 60px;*/
+		height: 12px;
+		padding: 8px;
+		font: 10px sans-serif;
+		background: #ddd;
+		border: solid 1px #aaa;
+		border-radius: 8px;
+		pointer-events: none;
+	}
+
+	.intro-line {
+		position: absolute;
+		border-top: 1px solid #ededed;
+		margin: 0 auto 50px;
+		width: 450px;
+		z-index: 150;
+	}
+	
+	.extro-line {
+		position: absolute;
+		border-top: 1px solid black;
+		margin: 0 auto 50px;
+		width: 300px;
+		z-index: 150;
+
+	}
+
+	ul li {
+		font-size: 16px;
+		font-family: Lato;
+		font-weight: 500;
+		margin: 0px;
+		list-style: none;
+		background-repeat: no-repeat;
+		background-position: 0px 5px;
+		padding-left: 0px;
+	}
+
+	ul li:before {
+		content: "\25BA \0020";
+		color: #888888;
+		/*font-size: 10px;*/
+		vertical-align: 2px;
+	}
+	
+.right{
+	fill:#e8e1d9;
+	stroke:#e8e1d9;
+}	
+
+.titleText {
+	font-family:Lato; 
+	font-size:45px;  
+	font-weight: 800;
+	color:white;
+	/*color: #e8e1d9;*/
+	
+	
+}
+
+.titleTextSmall {
+	
+	font-family:Lato; 
+	font-size:25px;  
+	font-weight: 800;
+	color:white;
+	/*color: #e8e1d9;*/
+	
+}
+
+.grey{
+	
+	font-family:Lato; 
+	font-size:10px;  
+	font-weight: 400;
+	color:grey;
+	/*color: #e8e1d9;*/
+}
+
+
+.claim{
+	top:200px;
+	left:20px;
+	width:300px;
+	font-family:Lato; 
+	font-size:20px;  
+	font-weight: 400;
+	line-height:1em;
+	color:white;
+	
+}
+
+.claim::before {
+    content: "«";
+}
+.claim::after {
+    content: "»";
+}
+
+.menuText {
+	font-family:Lato; 
+	font-size:18px;  
+	font-weight: 400;
+	line-height:1em;
+}
+
+.social-intro{
+	position:absolute;
+	bottom: 80px; 
+	right: 100px;
+	width: 100px; 
+}
+
+
+
+</style>
+
+<section > 
+	<div style="position:absolute; top:100px; left:420px; width:900px;">
+		<img id="ankerBild" src="images/nahe-241.jpg" style="width:100%">
+		<!-- <img src="images/stacks_image_97.jpg" style="width:100%"> -->
+
+		<div class="intro" style="position:absolute; top:15px; left: 10px; width:250px;">
+			<div class="intro-line" style="top:0px;"></div>
+			<div class="titleText" style="position:absolute; left: 10px;top:10px; width:500px;">
+				Nathalie Henseler
+			</div>
+			<div class="titleText" style="position:absolute; left: 10px;top:50px; font-weight: 400; width:500px;">
+				in den Ständerat
+			</div>
+			<div class="intro-line" style="top:110px;"></div>
+			<div class="titleTextSmall" style="position:absolute; left: 10px;top:110px; width:500px;">
+				die frische Kraft in Bern...
+			</div>
+			
+       <div style="position:absolute; " class="claim" id="ankerClaim"></div>
+
+        <div id="ankerKanton" class="titleTextSmall" style="position:absolute; left: 10px;top:320px; width:500px;">
+				...für einen starken Kanton
+			</div>
+		</div>
+		
+
+	</div>
+	
+	<div  style="position:absolute; top:100px; left:100px; width:300px; height:635px; ">
+		<div class="extro-line" style="top:15px;"></div>
+		<div class="extro-line" style="top:625px;"></div>
+		
+		<div id="tit" style="position:absolute; top:25px; left: 15px; font-family:Lato; font-size:45px;  font-weight: 800; color:#424242;">
+			</div>
+			
+		<div id="menuText" class="menuText" style="position:absolute; top:80px; left:15px;"	>das</div>
+		
+	</div>
+	
+	<div id="menuTopics" style="position:absolute; top:30px; left:380px; line-height:30px;"></div>
+
+	<div id="KantonSZ1" class="box2 cb_op005_g cbo_h" style="position:absolute; top:460px; left:370px; width:250px; height:170px;">
+		<div style="position:absolute; top:10px; left:10px">
+			<h2 class="blue"></h2>
+		</div>
+		<div style="position:absolute; top:7px; left:22px;" id="ktsz1"></div>
+
+	</div>
+	
+	<div class="social-intro">
+		
+				<a onclick="return !window.open(this.href, 'Twitter', 'width=800,height=500')" href="http://twitter.com/share?text=Lesenswert: die Page von Nathalie Henseler:&lang=de&url=http://nathalie-henseler.ch" target="_blank"> <img alt="Twitter icon" src="images/icn-twitter-intro.png"> </a>
+		
+				<a onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" href="https://www.facebook.com/sharer/sharer.php?u=http://nathalie-henseler.ch" target="_blank"> <img alt="Facebook icon" src="images/icn-facebook-intro.png"> </a>
+	
+	</div>
+
+	
+	
+
+	<script>
+		queue()
+		.defer(d3.json, "topojson/switzerland-simplified.json")//Schweiz mit Kantons- und Gemeindengrenzen
+		.defer(d3.tsv, "Content/Bilder.tsv")
+		.defer(d3.tsv, "Content/Menu.tsv")
+		.await(KtSchwyz2);
+
+		function KtSchwyz2(error, dTopo, Bilder, Menu) {
+			
+			var bildLink = d3.map(),
+			bildText = d3.map(),
+			bildClaim = d3.map();
+			
+			Bilder.forEach(function(d){bildLink.set(d.BFSNR, d.Bild);});
+			Bilder.forEach(function(d){bildText.set(d.BFSNR, d.Name);});
+			Bilder.forEach(function(d){bildClaim.set(d.BFSNR, d.Claim);});
+			
+			
+			// console.log(Bilder);
+			// console.log(bild);
+			
+			d3.select("#ankerBild").attr("src","images/nahe-241.jpg" );
+			
+			d3.select("#ankerClaim").html("lore ipsum generis suis sunt");
+			
+			d3.select("#ankerKanton").html("für einen starken Kanton");
+			
+			d3.select("#tit").html("Aktuell");
+
+			
+			var mMenuItems = Menu;
+			
+			var mMenuItems2 = [
+			
+			{
+				id : 1,
+				bez : "Aktuell",
+				html: "lore ipsum <ul><li>das ist der erste Punkt</li></ul>"
+				
+			},{
+				id : 2,
+				bez : "Positionen",
+				html: "lore ipsum <ul><li>das ist der positionen Punkt</li></ul>"
+			}, {
+				id : 3,
+				bez : "Persönlich",
+				html: "lore ipsum <ul><li>das ist der persönlich Punkt</li></ul>"
+			}, {
+				id : 4,
+				bez : "Komitee",
+				html: "lore ipsum <ul><li>das ist der Komitee Punkt</li></ul>"
+			}, {
+				id : 5,
+				bez : "Kontakt",
+				html: "lore ipsum <ul><li>das ist der Kontakt Punkt</li></ul>"
+			}];
+			
+			var mMenu = DERGraphs.MenuD3().classOn('lifloat menu sel cb_g').classOff('lifloat menu')
+			.wi(150)
+			.f1(function(d) {
+				//change filter Steuerjahr
+				d3.select("#tit").html(d.bez);
+				d3.select("#menuText").html(d.html);
+				
+			});
+			d3.select("#menuTopics").select('ul').remove();
+			d3.select("#menuTopics").datum(mMenuItems).call(mMenu);
+
+			var topo = DERGraphs.topo_json().width(350).height(300).scale(38000)
+			//.centre([8.0, 46.70]) //Bern
+			.centre([9.3, 46.85]);
+			//Schwyz
+
+			var sz = DERGraphs.filter_by_Canton(dTopo, 5);
+			topo.onClk(function(d, i) {
+				//console.log(d);
+				mGemeindeNo = d.properties.bfsNo;
+				mGemeinde = d.properties.name;
+				console.log("BFSNr",d.properties.bfsNo);
+				d3.select("#ankerBild").attr("src","images/"+bildLink.get(d.properties.bfsNo));
+				d3.select("#ankerKanton").html("...für ein starkes " + bildText.get(d.properties.bfsNo));
+				d3.select("#ankerClaim").html(bildClaim.get(d.properties.bfsNo));
+				//EK();
+			}).fclass('kanton')//css Klasse zum Einfärben
+			.title(function(d) {
+				return d.properties.name;
+			})//title für hover
+			;
+
+			//Topo Kanton platzieren
+			d3.select('#ktsz1').select('svg').remove();
+			d3.select('#ktsz1').datum(sz).call(topo);
+
+		};
+
+	</script>
+
+</section>
+
+<section>
+
+<h1>Ruag am Arsch</h1>
+</section>
+
+<script src="Scripts/stack.v1.min.js"></script>
+<script>
+	var mystack = stack();
+	
+
+(function () {
+
+
+    d3.selectAll("section")
+        .append("div")
+        .attr("style", "position:absolute; bottom:10px; right:20px; font-size:14px;")
+        .attr("class", "grey")
+        .html("&copy 2015 &#8212 Komitee");
+
+
+
+    var aup2 = DERGraphs.arrow_div();
+    aup2.orient("d");
+    d3.selectAll(".down").call(aup2);
+
+    aup2.orient("u");
+    d3.selectAll(".up").call(aup2);
+
+    aup2.orient("r");
+    d3.selectAll(".right").call(aup2);
+
+    aup2.orient("l");
+    d3.selectAll(".left").call(aup2);
+
+    aup2.orient("t");
+    d3.selectAll(".titlearrow").call(aup2);
+
+    var l1 = DERGraphs.arrowpath();
+    d3.selectAll(".Path").call(l1);
+
+    var db = DERGraphs.database();
+    d3.selectAll(".database").call(db);
+
+    var cube = DERGraphs.Cube3D();
+    d3.selectAll(".Cube3D").call(DERGraphs.Cube3D());
+
+    var f1 = DERGraphs.proc2();
+    f1.arrow(8).orient("r");
+    d3.selectAll(".proc2").call(f1);
+
+ })();
+
+</script>
+	
+
+</script>
