@@ -1,0 +1,151 @@
+body {
+  background: #929292;
+  font-family: "Helvetica Neue";
+  margin: auto;
+  width: 1280px;
+}
+
+a {
+  color: #6baed6;
+}
+
+a:not(:hover) {
+  text-decoration: none;
+}
+
+.stack {
+  /*background: #2D2D2D;*/
+  background: #fff;
+  border: solid 1px #000;
+  box-shadow: 0px 4px 8px rgba(0,0,0,.5);
+  color: #000;
+  display: none;
+  height: 560px;
+  overflow: hidden;
+  padding: 80px;
+  position: relative;
+  width: 1120px;
+  
+}
+
+.active {
+  box-shadow: 0px 4px 8px rgba(0,0,0,.5);
+  display: block;
+  position: fixed;
+}
+
+.grey {
+  color: #969696;
+}
+
+h1.titleslide
+{
+  font-size: 60px;
+  top: 220px;
+  width: 1120px;
+/*color: #6baed6;*/
+
+}
+.claim
+{
+    font-family: "Menlo", monospace;
+}
+    .claim:before
+    {
+        content:"«";
+
+    }
+    .claim:after
+    {
+        content:"»";
+
+    }
+
+.big
+{
+    font-size: 35px;
+    font-weight: 700;
+}
+
+
+.source
+{
+    position:absolute; 
+    bottom:10px; 
+    left:80px; 
+    font-size:14px;
+}
+
+    .source:before
+    {
+        content:"Source: ";
+    }
+
+section aside {
+  background:#fcd4a1;
+  /*background: #FFF8B8;*/
+  background-image: -webkit-linear-gradient(top, #FFF8B8, #FEED77);
+  box-shadow: 0 8px 16px rgba(0,0,0,.5);
+  color: #000;
+  display: block;
+  font-size: 16px;
+  padding: 16px;
+  position: absolute;
+  right: 50px;
+  bottom: 100px;
+  width: 348px;
+  /*-o-transform: rotate(-1deg);
+  -ms-transform: rotate(-1deg);
+  -moz-transform: rotate(-1deg);
+  -webkit-transform: rotate(-1deg);*/
+  -o-transition: opacity 100ms linear;
+  -ms-transition: opacity 100ms linear;
+  -moz-transition: opacity 100ms linear;
+  -webkit-transition: opacity 100ms linear;
+}
+
+section aside p:last-child {
+  margin-bottom: 0;
+}
+
+section aside:hover {
+  opacity: .5;
+}
+
+ .c_l {color:#368db9;}
+
+@media
+screen and (max-device-width: 1024px) {
+  body {
+    width: 1200px;
+  }
+
+  .stack {
+    margin: 40px 0;
+  }
+
+  .stack {
+    display: block;
+  }
+}
+
+@media print {
+
+    .stack { 
+    	border: solid rgb(214, 214, 214) 1px;
+    	margin-top:50pt;
+    	display: block;
+    	margin-top:120px;
+         page-break-after: always !important;
+        -webkit-print-color-adjust: exact;
+        -webkit-transform: none;
+        width:1100px;  
+    }
+
+  .active {
+  display: block;
+  position: relative;
+}
+}
+
+

@@ -13,7 +13,7 @@
 <style>
 	/*@import url(http://fonts.googleapis.com/css?family=PT+Serif|PT+Serif:b|PT+Serif:i);*/
 
-	/*@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,900,400italic,300italic);*/
+	@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,900,400italic,300italic);
 	@import url(http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic);
 	@import url(http://fonts.googleapis.com/css?family=Crimson+Text:600,400,400italic);
 	section {
@@ -45,15 +45,6 @@
 		color: black;
 	}
 
-   .menu a {
-		color: darkgrey;
-	}
-
-    .sel a {
-		color: black;
-	}
-
-
 	.cb_g {
 		/*background-color: lightblue;*/
 		background-color: white;
@@ -63,16 +54,14 @@
 		background-color: white;
 		color: darkgrey;
 	}
-	
-	
 
 	a:link, a:visited {
-		/*color: orange;*/
+		color: orange;
 		text-decoration: none;
 	}
 
 	a:hover {
-		text-decoration: none;
+		text-decoration: underline;
 	}
 
 	.swiss-cantons {
@@ -202,29 +191,6 @@
 		/*font-weight: 300;*/
 	}
 
-
-    .text li{
-    	margin-left:-1em;
-    	text-indent: -.80em;
-        /*padding-left: 0em;*/
-       font-size:18px;
-     }
-
-    .text li::before {
-    	content:"¶";
-        font-size:14px;
-        margin-right:5px;   
-        color:#333; 	
-        
-		list-style: none;
-		background-repeat: no-repeat;
-		background-position: 0px 5px;
-		padding-left: 0px;
-		vertical-align: 1px;
-    	
-    }
-
-
 	.social-intro {
 		position: absolute;
 		bottom: 60px;
@@ -252,11 +218,10 @@
 	}
 
 	.menuTopics {
+
 		font-family: 'Crimson Text', serif;
 		font-size: 22px;
 	}
-	
-	
 
 	h1 {
 		left: 120px;
@@ -276,7 +241,6 @@
 		font-family: 'Crimson Text', serif;
 		font-size: 20px;
 		margin-bottom: 5px;
-		margin-top:0px;
 	}
 
 	h2:before {
@@ -292,14 +256,11 @@
 		margin-top: 0px;
 		padding-top: 0px;
 		line-height: 1.3em;
-		font-size: 18px;
+		font-size: 16px;
 	}
 
 </style>
 
-<!------------------------
-	Seite 1
--------------------------->
 <section >
 
 	<div style="position:absolute; top:100px; left:420px; width:800px;">
@@ -329,7 +290,7 @@
 
 	</div>
 
-
+	<div style="position:absolute; " class="claim" id="ankerClaim"></div>
 
 	<div  style="position:absolute; top:90px; left:100px; width:300px; height:635px; ">
 
@@ -338,37 +299,7 @@
 		<!-- <div id="tit" style="position:absolute; top:-35px; left: 15px; font-family:Lato; font-size:35px;  font-weight: 800; color:#424242;">
 		</div> -->
 
-		<div id="menuText" class="menuText text" style="position:absolute; top:25px; left:15px; width:260px;">
-			
-			<p>Liebe Schwyzerinnen und Schwyzer</p>
-			
-			<br/>
-			<p>Meine Kanditatur für den Ständerat ist wohl überlegt:</p>
-			
-			<p>
-			<ul><li>Schwyz braucht eine frische Kraft in Bern,</li>
-				<li>Als Macherin habe ich gezeigt, dass ich Projekte auch umsetze,</li>
-				<li>Meine Kandidatur wird breit unterstützt,</li>
-				<li>Wählen und überzeugen Sie sich selbst!</li>
-			</ul>
-			<p>Getreu meinem Motto: <br/><strong>«überleggä - apackä - umsetzä» </strong>
-				werde ich mich in Bern für Sie engagieren und einsetzen. </p>
-			<p>Für einen prosperierenden Kanton Schwyz!</p>	
-			
-			<br/> Ihre Nathalie<br/><br/><br/>
-			
-			
-			
-			<br/><a href='http://www.srf.ch/news/regional/zentralschweiz/nathalie-henseler-will-schwyzer-staenderaetin-werden' 
-			target=‘blank’>Radio-Interview zur Kandidatur</a>
-
-			
-			</p>
-			
-			
-			
-			
-		</div>
+		<div id="menuText" class="menuText text" style="position:absolute; top:15px; left:15px;"	></div>
 
 	</div>
 
@@ -376,7 +307,7 @@
 
 	<div id="KantonSZ1" class="box2 cb_op005_g cbo_h" style="position:absolute; top:460px; left:370px; width:250px; height:170px;">
 		<div style="position:absolute; top:10px; left:10px">
-			
+			<h2 class="blue"></h2>
 		</div>
 
 		<div style="position:absolute; top:7px; left:22px;" id="ktsz1" z-index=-1;></div>
@@ -413,45 +344,25 @@
 			// console.log(Bilder);
 			// console.log(bild);
 
-			//d3.select("#menuText").html(Menu[0].html);
+			d3.select("#menuText").html(Menu[0].html);
 
 			d3.select("#ankerBild").attr("src", "images/nahe-241.png");
 
-			
+			//d3.select("#ankerClaim").html("überleggä - apackä - umsetzä");
+			//d3.select("#tit").html("überleggä - apackä - umsetzä");
 
 			d3.select("#ankerKanton").html("...für einen starken Kanton");
 
 			//d3.select("#tit").html("Aktuell");
 
-			var mMenuItems = [
-			    {id:1 
-				,bez:"Aktuell"
-				,html:""}
-				,{id:2 
-				,bez:"<a href='index.html#1'>Positionen</a>"
-				,html:""}
-				,{id:3 
-				,bez:"<a href='index.html#4'>Persönlich</a>"
-				,html:""},
-				,{id:4 
-				,bez:"<a href='index.html#5'>Medien</a>"
-				,html:""}
-				
-				] //Menu;
-			
-			
-			
+			var mMenuItems = Menu;
 
-			var mMenu = DERGraphs.MenuD3()
-				.classOn('lifloat menu sel cb_g')
-				.classOff('lifloat menu')
-				.wi(150)
-				.f1(function(d) {
-					//change filter Steuerjahr
-					//d3.select("#tit").html(d.bez);
-					//d3.select("#menuText").html(d.html);
-	
-				});
+			var mMenu = DERGraphs.MenuD3().classOn('lifloat menu sel cb_g').classOff('lifloat menu').wi(150).f1(function(d) {
+				//change filter Steuerjahr
+				//d3.select("#tit").html(d.bez);
+				d3.select("#menuText").html(d.html);
+
+			});
 			d3.select("#menuTopics").select('ul').remove();
 			d3.select("#menuTopics").datum(mMenuItems).call(mMenu);
 
@@ -463,7 +374,6 @@
 			var sz = DERGraphs.filter_by_Canton(dTopo, 5);
 			topo.onClk(function(d, i) {
 				//console.log(d);
-				
 				mGemeindeNo = d.properties.bfsNo;
 				mGemeinde = d.properties.name;
 				//console.log("BFSNr",d.properties.bfsNo);
@@ -487,22 +397,18 @@
 
 </section>
 
-<!------------------------
-	Seite 2
--------------------------->
-
 <section>
 
-	<h1>Positionen (1/2)</h1>
+	<h1>Positionen</h1>
 
-	<div style="position:absolute; top:115px; left:120px;">
+	<div style="position:absolute; top:95px; left:120px;">
 
-		<div style="position:absolute; top:0px; left:0px; width:430px;">
+		<div style="position:absolute; top:0px; left:0px; width:400px;">
 			<!----------------------->
-			<div class="text" style="position: absolute; top:0px; left:0px; width:250px; ">
+			<div class="text" style="position: absolute; top:20px; left:0px; width:250px; ">
 				<img src="images/bundeshaus_klein.png" style="width:80px;">
 			</div>
-			<div class="text" style="position: absolute; top:0px; left:90px; width:280px; ">
+			<div class="text" style="position: absolute; top:0px; left:90px; width:250px; ">
 
 				<h2> Finanzausgleich (NFA) </h2>
 
@@ -516,12 +422,12 @@
 			<!----------------------->
 		</div>
 
-		<div style="position:absolute; top:0px; left:430px; width:430px;">
+		<div style="position:absolute; top:0px; left:380px; width:400px;">
 			<!----------------------->
-			<div class="text" style="position: absolute; top:0px; left:0px; width:250px; ">
+			<div class="text" style="position: absolute; top:20px; left:0px; width:250px; ">
 				<img src="images/verkehr_cargo.png" style="width:80px;">
 			</div>
-			<div class="text" style="position: absolute; top:0px; left:90px; width:280px; ">
+			<div class="text" style="position: absolute; top:0px; left:90px; width:250px; ">
 
 				<h2> Verkehrspolitik </h2>
 
@@ -539,73 +445,7 @@
 
 		<div style="position:absolute; top:0px; left:760px; width:400px;">
 			<!----------------------->
-			
-			<!----------------------->
-		</div>
-
-	</div>
-
-	<div style="position:absolute; top:400px; left:120px;">
-
-		<div style="position:absolute; top:0px; left:0px; width:430px;">
-			<!----------------------->
-			<div class="text" style="position: absolute; top:0px; left:0px; width:80px; ">
-				<img src="images/energie.png" style="width:80px;">
-			</div>
-			<div class="text" style="position: absolute; top:0px; left:90px; width:280px; ">
-				<h2> Energie </h2>
-				<p>
-					Nicht unnötig verteuernde Bau-Vorschriften, sondern die Möglichkeiten der 
-					nachhaltigen Energieproduktion sollen im Fokus der Energiewende stehen. Innovative Unternehmen dürfen
-					dabei nicht behindert werden, neue Technologien zu entwickeln und umzusetzen.
-				</p>
-			</div>
-			<!----------------------->
-		</div>
-
-		<div style="position:absolute; top:0px; left:430px; width:430px;">
-			<!----------------------->
-			<div class="text" style="position: absolute; top:0px; left:0px; width:80px; ">
-				<img src="images/tourismus2.png" style="width:80px;">
-			</div>
-			<div class="text" style="position: absolute; top:0px; left:90px; width:280px; ">
-
-				<h2> Tourismus </h2>
-
-				<p>
-					Der Kanton Schwyz muss als Tourismuskanton auf dem nationalen Parkett mehr 
-					Gehör bekommen: Infrastrukturprojekte mit nationaler Ausstrahlung, 
-					Arbeitsplätze in der Peripherie und eine jahrhundertealte touristische 
-					Tradition sind Gründe genug dafür.
-				</p>
-			</div>
-			<!----------------------->
-		</div>
-
-		<div style="position:absolute; top:0px; left:760px; width:400px;">
-			<!----------------------->
-			
-			<!----------------------->
-		</div>
-
-	</div>
-
-
-</section>
-
-<!------------------------
-	Seite 3
--------------------------->
-
-<section>
-
-	<h1>Positionen (2/2)</h1>
-
-	<div style="position:absolute; top:115px; left:120px;">
-
-		<div style="position:absolute; top:0px; left:0px; width:400px;">
-			<!----------------------->
-			<div class="text" style="position: absolute; top:0px; left:0px; width:250px; ">
+			<div class="text" style="position: absolute; top:20px; left:0px; width:250px; ">
 				<img src="images/wirtschaft.png" style="width:80px;">
 			</div>
 			<div class="text" style="position: absolute; top:0px; left:90px; width:250px; ">
@@ -619,73 +459,46 @@
 					Als grosser Geberkanton darf Schwyz bei der Verteilung der Mittel nicht weiter benachteiligt werden.
 				</p>
 			</div>
-			
-			
-			<!----------------------->
-		</div>
-
-		<div style="position:absolute; top:0px; left:430px; width:400px;">
-			<!----------------------->
-			<div class="text" style="position: absolute; top:0px; left:0px; width:80px; ">
-				<img src="images/sicherheit.png" style="width:80px;">
-			</div>
-			<div class="text" style="position: absolute; top:0px; left:90px; width:280px; ">
-
-				<h2> Sicherheitspolitik </h2>
-
-				<p>
-					Das bewährte Milizsystem der 
-					Schweizer Armee darf nicht auf Kosten von Nato-Standards zu 
-					einer Kleinstarmee mit veraltetem Material verkommen.
-				</p>
-			</div>
-			<!----------------------->
-
-		</div>
-
-		<div style="position:absolute; top:0px; left:760px; width:400px;">
-			<!----------------------->
-		   
 			<!----------------------->
 		</div>
 
 	</div>
 
-	<div style="position:absolute; top:400px; left:120px;">
+	<div style="position:absolute; top:380px; left:120px;">
 
 		<div style="position:absolute; top:0px; left:0px; width:400px;">
 			<!----------------------->
-			<div class="text" style="position: absolute; top:0px; left:0px; width:80px; ">
-
-				<img src="images/familie.png" style="width:80px;">
+			<div class="text" style="position: absolute; top:20px; left:0px; width:80px; ">
+				<img src="images/energie.png" style="width:80px;">
 			</div>
-			<div class="text" style="position: absolute; top:0px; left:90px; width:280px; ">
+			<div class="text" style="position: absolute; top:0px; left:90px; width:250px; ">
+				<h2> Energie </h2>
 
-				<h2> Familie und Beruf</h2>
 				<p>
-					Unser wirtschaftliches Potenzial liegt bei den Frauen: 
-					Die Vereinbarkeit von Familie und Beruf ist volkswirtschaftlich sinnvoller als der 
-					Import von Fachkräften aus dem Ausland. 
-					Das in die Ausbildung investierte Geld fliesst so wieder als Wirtschaftsleistung zurück.
+					NFA heisst nicht nur Bezahlen, sondern auch mehr Eigenständigkeit – diese müssen wir einfordern.
+				</p>
+				<p>
+					Als grosser Geberkanton darf Schwyz bei der Verteilung der Mittel nicht weiter benachteiligt werden.
 				</p>
 			</div>
 			<!----------------------->
 		</div>
 
-		<div style="position:absolute; top:0px; left:430px; width:400px;">
+		<div style="position:absolute; top:0px; left:380px; width:400px;">
 			<!----------------------->
-		    <div class="text" style="position: absolute; top:0px; left:0px; width:80px; ">
-				<img src="images/schweizerfranken.png" style="width:80px;">
+			<div class="text" style="position: absolute; top:20px; left:0px; width:80px; ">
+				<img src="images/tourismus2.png" style="width:80px;">
 			</div>
-			<div class="text" style="position: absolute; top:0px; left:90px; width:280px; ">
+			<div class="text" style="position: absolute; top:0px; left:90px; width:250px; ">
 
-				<h2> Steuerwettbewerb </h2>
+				<h2> Tourismus </h2>
 
 				<p>
-					Eine kluge Steuerstrategie im nationalen und internationalen Steuerwettbewerb hat den Kanton 
-					Schwyz aus dem Dornröschenschlaf zum internationalen 
-					Wirtschaftsplatz verholfen: Diese Erfolgsgeschichte muss weitergeschrieben werden – 
-					aber wieder mit Vernunft und Augenmass.
+					Strasse und Öffentlicher Verkehr dürfen nicht gegeneinander ausgespielt werden – es braucht ein ganzheitliches Verkehrskonzept.
+				</p>
+				<p>
+					Der Kanton Schwyz darf nicht zum reinen internationalen Gütertransitkorridor verkommen. Der öV und der Berufsverkehr auf der Strasse müssen Vorrang haben.
+
 				</p>
 			</div>
 			<!----------------------->
@@ -693,7 +506,21 @@
 
 		<div style="position:absolute; top:0px; left:760px; width:400px;">
 			<!----------------------->
-			
+			<div class="text" style="position: absolute; top:20px; left:0px; width:80px; ">
+
+				<img src="images/familie.png" style="width:80px;">
+			</div>
+			<div class="text" style="position: absolute; top:0px; left:90px; width:250px; ">
+
+				<h2> Familie und Beruf</h2>
+
+				<p>
+					NFA heisst nicht nur Bezahlen, sondern auch mehr Eigenständigkeit – diese müssen wir einfordern.
+				</p>
+				<p>
+					Als grosser Geberkanton darf Schwyz bei der Verteilung der Mittel nicht weiter benachteiligt werden.
+				</p>
+			</div>
 			<!----------------------->
 		</div>
 
@@ -702,36 +529,31 @@
 
 </section>
 
-<!------------------------
-	Seite 4 
--------------------------->
-
 <section>
 
-	<h1>Der Nationale Finanzausgleich (NFA)</h1>
+	<h1>Meine Positionen</h1>
 
-	<div style="position:absolute; top:115px; left:120px;">
+	<div style="position:absolute; top:105px; left:120px;">
 
-		<div style="position:absolute; top:0px; left:0px; width:750px;">
+		<div style="position:absolute; top:0px; left:0px; width:400px;">
 			<!----------------------->
-			<div class="text" style="position: absolute; top:0px; left:20px; width:250px; ">
+			<div class="text" style="position: absolute; top:20px; left:0px; width:250px; ">
 
-				<img src="images/bundeshaus_klein.png" style="width:150px;">
+				<img src="images/bundeshaus_klein.png" style="width:180px;">
 			</div>
-			
-			<div class="text" style="position: absolute; top:0px; left:190px; width:100%;">
+			<div class="text" style="position: absolute; top:0px; left:200px; width:550px; ">
 
-				<h2>Wie funktioniert der Finanzausgleich?</h2>
+				<h2> Finanzausgleich (NFA) </h2>
 
 				<p>
-					Der Nationale Finanzausgleich (NFA) regelt den Ausgleich der Finanzkraft unter den Kantonen. 
+					Seit 2008 regelt der Nationale Finanzausgleich (NFA) den Ausgleich der Finanzkraft unter den Kantonen. 
+					'Reiche' Kantone bezahlen, 'arme' Kantone erhalten Geld.
 				</p>
 				<p>
-					Der Finanzkraftindex eines Kantons berechnet sich aus dem Volkseinkommen, 
-					der Steuerkraft (= Steuereinnahmen im Verhältnis zum Steuerbelastungsindex), 
+					Der Finanzkraftindex eines Kantons wird berechnet aus dem Volkseinkommen, 
+					der Steuerkraft (= Steuereinnahmen im Verhältnis zum Steuerbelastungsindex), 
 					dem Steuerbelastungsindex und dem Anteil des Berggebiets an der Kantonsfläche.
 				</p>
-				<p>'Reiche' Kantone bezahlen, 'arme' Kantone erhalten Geld.</p>
 			</div>
 			<!------------------
 				http://www.efv.admin.ch/d/downloads/publikationen/broschueren/NFA-Broschuere_d.pdf
@@ -739,158 +561,97 @@
 				----->
 		</div>
 
-		<div class="text" style="position: absolute; top:200px; left:0px; width:750px; ">
-			<div style="position:absolute; top:0px; left:140px;">
+		<div class="text" style="position: absolute; top:245px; left:150px; width:750px; ">
+			<div style="position:absolute; top:0px; left:0px;">
 				<img src="images/kantonSZ.png" style="width:30px">
 			</div>
-			
-			<div style="position:absolute; top:0px; left:190px;width:100%;">
-				<h2>Die Bedeutung des NFA's für Schwyz?</h2>
+			<div style="position:absolute; top:0px; left:50px; width:500px;">
 				<p>
-					Seit 2008 hat der Kanton Schwyz über CHF xxxx Mio. in den Fianzausgleich bezahlt.
+					NFA heisst nicht nur Bezahlen, sondern auch mehr Eigenständigkeit – diese müssen wir einfordern.
 				</p>
-				
 				<p>
-					Der Kanton Schwyz ist zwar finanzstark aber in seiner Wirtschaftsleistung strukturschwach geblieben.
+					Als grosser Geberkanton darf Schwyz bei der Verteilung der Mittel nicht weiter benachteiligt werden.
 				</p>
-				<p>Während Schwyz in den Fianzausgleich zahlt, baut der Bund an wichtigen Orten ab und schwächt damit den Kanton Schwyz.</p>
-				
 			</div>
 		</div>
 
-		<div class="text" style="position: absolute; top:375px; left:0px; width:750px; ">
-			<div style="position:absolute; top:0px; left:100px;">
-				<img src="images/nathalie_rund.png" style="width:70px">
+		<div class="text" style="position: absolute; top:355px; left:120px; width:500px; ">
+			<div style="position:absolute; top:0px; left:0px;">
+				<img src="images/nathalie_rund.png" style="width:60px">
 			</div>
-			<div style="position:absolute; top:0px; left:190px; width:100%;">
-				<h2>Meine Position</h2>
+			<div style="position:absolute; top:0px; left:80px;">
 				<p>
+					Der Steuerwettbewerb unter den Kantonen ist wichtig. Der Bürger soll in Steuerfragen mitentscheiden können.
 					Der NFA darf nicht zu einer versteckten Steuerharmonisierung führen.
-					Der Bürger soll in Steuerfragen das letzte Wort behalten. Nur echter Steuerwettbewerb 
-					zwischen den Kantonen bringt uns weiter.
-				  
-					<p>
-					In Bern setze ich mich dafür ein, dass der Bund auch im Kanton Schwyz investiert und seine Leistungen nicht weiter reduziert (-->Ruag, Verkehr, Bildung).
-					</p> 
-					 <p>
-					 Als grosser Geberkanton darf Schwyz bei der Verteilung der Mittel nicht weiter benachteiligt werden.
-					</p>
+					Der Kanton Schwyz ist zwar finanzstark aber bleibt strukturschwach. 
+					Der Bund soll auch im Kanton Schwyz investieren (-->Ruag).
+					
 				</p>
 
 			</div>
 		</div>
-
-		<!---------------
-			Kommentar
-			-------->
-	
-</div>
-
-
-</section>
-
-<!------------------------
-	Seite 5
--------------------------->
-
-<section>
-
-	<h1>Persönlich </h1>
-
-	<div style="position:absolute; top:105px; left:120px;">
-
-		<div style="position:absolute; top:0px; left:0px; width:550px;">
-			<!----------------------->
-			<div class="text" style="position: absolute; top:20px; left:20px; width:250px; ">
-
-				<img src="images/nathalie_rund.png" style="width:150px;">
-			</div>
-			
-			<div class="text" style="position: absolute; top:0px; left:190px; width:100%;">
-
-				<h2> Beruf </h2>
-
-				<p>
-					Verwaltungsratspräsidentin und Geschäftsführerin Rotenfluebahn <br/>Mythernretgion AG 
-				</p>
-				<p>
-					Selbständige Kommunikations- und Politikberaterin. 
-				</p>
-				<p>'Reiche' Kantone bezahlen, 'arme' Kantone erhalten Geld.</p>
-				
-				<h2>Engagements</h2>
-				<p>
-					Der Finanzkraftindex eines Kantons berechnet sich aus dem Volkseinkommen, 
-					der Steuerkraft (= Steuereinnahmen im Verhältnis zum Steuerbelastungsindex), 
-					dem Steuerbelastungsindex und dem Anteil des Berggebiets an der Kantonsfläche.
-				</p>
-				
-				<h2>Ausbildung</h2>
-				
-			</div>
-			<!------------------
-				http://www.efv.admin.ch/d/downloads/publikationen/broschueren/NFA-Broschuere_d.pdf
-				
-				----->
-		</div>
-
-
-
 
 		<!----------------------->
 	
-</div>
-
-
-</section>
-
-<!------------------------
-	Seite 6
--------------------------->
-<section>
-
-	<h1>Medien</h1>
-
-	<div style="position:absolute; top:105px; left:120px;">
-
-		<div style="position:absolute; top:0px; left:0px; width:550px;">
-			<!----------------------->
-			<div class="text" style="position: absolute; top:20px; left:20px; width:250px; ">
-
-				<img src="images/nathalie_rund.png" style="width:150px;">
-			</div>
-			
-			<div class="text" style="position: absolute; top:0px; left:190px; width:100%;">
-
-				<h2> Bote der Urschweiz </h2>
-
-				<p>
-					
-				</p>
-				
-				<h2> Fernsehen </h2>
-
-				<p>
-					
-				</p>
-				
-			</div>
-			<!------------------
-				http://www.efv.admin.ch/d/downloads/publikationen/broschueren/NFA-Broschuere_d.pdf
-				
-				----->
+<!--
+	<div style="position:absolute; top:280px; left:0px; width:400px;">
+		
+		<div class="text" style="position: absolute; top:20px; left:0px; width:250px; ">
+			<img src="images/verkehr_cargo.png" style="width:180px;">
 		</div>
+		<div class="text" style="position: absolute; top:0px; left:200px; width:250px; ">
 
+			<h2> Verkehrspolitik </h2>
 
+			<p>
+				Strasse und Öffentlicher Verkehr dürfen nicht gegeneinander ausgespielt werden – es braucht ein ganzheitliches Verkehrskonzept.
+			</p>
+			<p>
+				Der Kanton Schwyz darf nicht zum reinen internationalen Gütertransitkorridor verkommen. Der öV und der Berufsverkehr auf der Strasse müssen Vorrang haben.
 
+			</p>
+		</div>
+		
 
-		<!----------------------->
+	</div>
+-->	
 	
 </div>
 
 
 </section>
 
+<section>
+
+	<h1>Hintergrund </h1>
+
+	<img id="ankerBild" src="images/nahe-241_3.png" style="width:100%">
+
+	<div style="position:absolute; top:200px;" class="text">
+		<p>
+			NZZ vom 10. April 2015
+		</p>
+		<a href="Content/nzz_20150410_Fr_009.pdf">In der SP und der SVP hat es auffällig viele Parlamentarier, die trotz langer Amtsdauer noch einmal antreten</a>
+	</div>
+
+</section>
+
+<section>
+
+	<h1>Hintergrund2 </h1>
+
+	<div style="position:absolute; top:200px;" class="text">
+		<p>
+			NZZ vom 10. April 2015
+		</p>
+		<a href="Content/nzz_20150410_Fr_009.pdf">In der SP und der SVP hat es auffällig viele Parlamentarier, die trotz langer Amtsdauer noch einmal antreten</a>
+	</div>
+
+</section>
+
+<section>
+
+</section>
 
 <script src="Scripts/stack.v0.min.js"></script>
 <script>
